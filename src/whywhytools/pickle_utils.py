@@ -1,19 +1,18 @@
 from pathlib import Path
 from typing import Union
 import os
+from .type_checker import check_file
 
 import pickle
 def load_pickle(file: Union[str, Path]):
-    if not isinstance(file, str):
-        raise TypeError("file must be str, got {}".format(type(file).__name__))
+    check_file(file)
 
     with open(file, 'rb') as f:
         obj = pickle.load(f)
     return obj
 
 def save_pickle(obj, file: Union[str, Path], force=False, silent=False):
-    if not isinstance(file, str):
-        raise TypeError("file must be str, got {}".format(type(file).__name__))
+    check_file(file)
 
     if os.path.exists(file) and force == False:
         print('[INFO] {} already exists.'.format(file))

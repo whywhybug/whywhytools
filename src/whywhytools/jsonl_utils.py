@@ -2,11 +2,11 @@ from pathlib import Path
 from typing import Union
 import os
 import json
+from .type_checker import check_file, check_obj_list
 
 def read_jsonl(file: Union[str, Path]):
-    if not isinstance(file, str):
-        raise TypeError("file must be str, got {}".format(type(file).__name__))
-
+    check_file(file)
+    
     df = []
     with open(file, mode='r', encoding='utf-8') as reader:
         line = reader.readline()
@@ -17,9 +17,9 @@ def read_jsonl(file: Union[str, Path]):
     return df
 
 def write_jsonl(obj_list: Union[dict, list[dict]], file: Union[str, Path], force=False, silent=False):
-    if not isinstance(file, str):
-        raise TypeError("file must be str, got {}".format(type(file).__name__))
-
+    check_obj_list(obj_list)
+    check_file(file)
+    
     if os.path.exists(file) and force == False:
         print('[INFO] {} already exists.'.format(file))
         return
@@ -27,9 +27,7 @@ def write_jsonl(obj_list: Union[dict, list[dict]], file: Union[str, Path], force
     dir_path = os.path.dirname(file)
     if dir_path != '':
         os.makedirs(dir_path, exist_ok=True)
-
-    if isinstance(obj_list, dict):
-        obj_list = [obj_list]
+    
     with open(file, mode='w', encoding='utf-8') as fp:
         for obj in obj_list:
             json.dump(obj, fp, ensure_ascii=False)
@@ -40,15 +38,13 @@ def write_jsonl(obj_list: Union[dict, list[dict]], file: Union[str, Path], force
 
 
 def append_jsonl(obj_list: Union[dict, list[dict]], file: Union[str, Path]) -> None:
-    if not isinstance(file, str):
-        raise TypeError("file must be str, got {}".format(type(file).__name__))
-
+    check_obj_list(obj_list)
+    check_file(file)
+    
     dir_path = os.path.dirname(file)
     if dir_path != '':
         os.makedirs(dir_path, exist_ok=True)
-
-    if isinstance(obj_list, dict):
-        obj_list = [obj_list]
+    
     with open(file, mode='a', encoding='utf-8') as fp:
         for obj in obj_list:
             json.dump(obj, fp, ensure_ascii=False)
