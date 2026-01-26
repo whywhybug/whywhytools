@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "whywhytools"
 dynamic = ["version"]
-description = "A lightweight Python package for reading and writing JSON/JSON Lines files."
+description = "A lightweight Python package for easy reading and writing of JSON, JSONL, and Pickle files."
 authors = [
     { name="whywhybug", email="whywhybug@gmail.com" }
 ]
