@@ -104,6 +104,50 @@ data = load_pickle('model.pkl')
 print(data)
 ```
 
+### Plain Text (`.txt` or general text files)
+
+Handle plain text files, supporting direct string reading or line-by-line list loading, as well as write and append operations.
+
+##### Write Text File
+
+```python
+from whywhytools import write_file
+
+lines = [
+    "First line of the text file.",
+    "Second line is here."
+]
+
+# Write a list of strings to a file
+write_file(lines, "document.txt")
+
+# Write a single string
+write_file("Just one line here.", "single_doc.txt")
+```
+
+##### Append to Text File
+
+```python
+from whywhytools import append_file
+
+# Append single or multiple lines
+append_file("This is a newly appended line.", "document.txt")
+```
+
+##### Read Text File
+
+```python
+from whywhytools import read_file
+
+# Read entire file as a single string
+content = read_file("document.txt")
+print(content)
+
+# Read file line by line into a list
+lines = read_file("document.txt", lines=True)
+print(lines)
+```
+
 ## License
 
 MIT
