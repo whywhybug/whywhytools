@@ -171,3 +171,41 @@ Append a string or a list of strings to an existing text file.
 **Args:**
 * **lines** (`Union[str, list[str]]`): A single string or a list of strings to append.
 * **file** (`Union[str, Path]`): The path to the text file.
+
+## PyTorch (`.pt`, `.pth`)
+
+Utilities for handling PyTorch files. Compared to the original `torch.save` and `torch.load`, `whywhytools` provides built-in path type checking, automatic parent directory creation, and safety guards like `force` argument to prevent accidental overwrites.
+
+### `load_torch`
+
+```python
+def load_torch(file: Union[str, Path], map_location: Any = None, weights_only: bool = False, **kwargs: Any) -> Any
+```
+
+Read a PyTorch file and return the loaded object.
+
+**Args:**
+* **file** (`Union[str, Path]`): The path to the PyTorch file.
+* **map_location** (`Any`, optional): A function, torch.device, string or a dict specifying how to remap storage locations.
+* **weights_only** (`bool`, optional): If True, only weights will be loaded. Defaults to False.
+* **\*\*kwargs**: Additional keyword arguments to pass to `torch.load`.
+
+**Returns:**
+* `Any`: The object read from the PyTorch file.
+
+---
+
+### `save_torch`
+
+```python
+def save_torch(obj: Any, file: Union[str, Path], force: bool = False, silent: bool = False, **kwargs: Any) -> None
+```
+
+Write an object to a PyTorch file.
+
+**Args:**
+* **obj** (`Any`): The object to write to the file.
+* **file** (`Union[str, Path]`): The path to the output PyTorch file.
+* **force** (`bool`, optional): If True, overwrite the file if it exists. Defaults to False.
+* **silent** (`bool`, optional): If True, suppress print messages. Defaults to False.
+* **\*\*kwargs**: Additional keyword arguments to pass to `torch.save`.

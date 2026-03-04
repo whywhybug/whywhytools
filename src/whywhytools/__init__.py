@@ -19,3 +19,8 @@ from .text_manager import (
     write_file,
     append_file,
 )
+
+from .torch_manager import (
+    load_torch,
+    save_torch,
+)
