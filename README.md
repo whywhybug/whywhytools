@@ -10,6 +10,12 @@ You can install this package using pip:
 pip install whywhytools
 ```
 
+To use PyTorch functionalities, you will need to install it with the `torch` optional dependency:
+
+```bash
+pip install whywhytools[torch]
+```
+
 ## Quickstart
 
 ### JSON Lines (`.jsonl`)
@@ -148,7 +154,32 @@ lines = read_file("document.txt", lines=True)
 print(lines)
 ```
 
+### PyTorch (`.pt` or `.pth`)
+
+Handle PyTorch files. Compared to the original `torch.save` and `torch.load`, `whywhytools` provides built-in path type checking, automatic parent directory creation, and safety guards like `force` argument to prevent accidental overwrites.
+
+##### Save PyTorch File
+
+```python
+import torch
+from whywhytools import save_torch
+
+model_data = {'weights': torch.tensor([0.1, 0.5, 0.9])}
+save_torch(model_data, 'model.pt')
+```
+
+##### Load PyTorch File
+
+```python
+from whywhytools import load_torch
+
+data = load_torch('model.pt')
+print(data)
+
+# Load safely with weights_only=True
+safe_data = load_torch('model.pt', weights_only=True)
+```
+
 ## License
 
 MIT
-
