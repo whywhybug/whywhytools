@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Union
 import os
+import sys
 import json
 from .type_checker import check_type
 from .utils import create_parent_dir
@@ -21,23 +22,34 @@ def read_json(file: Union[str, Path]) -> dict:
         df = json.load(reader)
     return df
 
-def write_json(obj: Union[dict], file: Union[str, Path], force=False, silent=False) -> None:
+def write_json(
+    obj: Union[dict],
+    file: Union[str, Path],
+    force: bool = False,
+    silent: bool = False,
+    raise_on_exists: bool = False,
+) -> None:
     """
     Write a dictionary to a JSON file.
-    
+
     Args:
         obj (Union[dict]): The dictionary object to write.
         file (Union[str, Path]): The path to the output JSON file.
         force (bool, optional): If True, overwrite the file if it exists. Defaults to False.
         silent (bool, optional): If True, suppress print messages. Defaults to False.
-    
+        raise_on_exists (bool, optional): If True, raise FileExistsError with full
+            traceback instead of exiting cleanly. Defaults to False.
+
     Raises:
-        TypeError: If obj is not a dictionary.
+        TypeError: If obj or file is not the expected type.
+        FileExistsError: If the file exists, force is False, and traceback is True.
     """
     check_type(file, (str, Path))
-    if os.path.exists(file) and force == False:
-        print('[INFO] {} already exists.'.format(file))
-        return
+    if os.path.exists(file) and not force:
+        msg = '[ERROR] {} already exists.'.format(file)
+        if raise_on_exists:
+            raise FileExistsError(msg)
+        sys.exit(msg)
     create_parent_dir(file)
     
     check_type(obj, dict)

@@ -1,4 +1,5 @@
 import os
+import sys
 from pathlib import Path
 from typing import Union, Any
 
@@ -32,6 +33,7 @@ def save_pt(
     file: Union[str, Path],
     force: bool = False,
     silent: bool = False,
+    raise_on_exists: bool = False,
     **kwargs: Any
 ) -> None:
     """
@@ -42,16 +44,23 @@ def save_pt(
         file (Union[str, Path]): The path to the output PyTorch file.
         force (bool, optional): If True, overwrite the file if it exists. Defaults to False.
         silent (bool, optional): If True, suppress print messages. Defaults to False.
+        raise_on_exists (bool, optional): If True, raise FileExistsError with full
+            traceback instead of exiting cleanly. Defaults to False.
         **kwargs: Additional keyword arguments to pass to torch.save.
+
+    Raises:
+        FileExistsError: If the file exists, force is False, and raise_on_exists is True.
     """
     check_type(file, (str, Path))
     if os.path.exists(file) and not force:
-        print('[INFO] {} already exists.'.format(file))
-        return
+        msg = '[ERROR] {} already exists.'.format(file)
+        if raise_on_exists:
+            raise FileExistsError(msg)
+        sys.exit(msg)
     create_parent_dir(file)
-    
+
     import torch
     torch.save(obj, file, **kwargs)
-    
+
     if not silent:
         print('[INFO] save to {}'.format(file))
