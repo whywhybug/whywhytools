@@ -1,7 +1,7 @@
 """The whywhytools package provides a collection of utility functions for file I/O.
 
 This module exposes functions for reading and writing various file formats including
-JSON, JSONL, Pickle, Text, and PyTorch tensors, along with common file system utilities.
+JSON, JSONL, Pickle, Text, PyTorch tensors, and Safetensors, along with common file system utilities.
 """
 
 from .json_manager import (
@@ -16,6 +16,10 @@ from .jsonl_manager import (
 from .pickle_manager import (
     load_pickle,
     save_pickle,
+)
+from .safetensors_manager import (
+    load_safetensors,
+    save_safetensors,
 )
 from .text_manager import (
     append_file,
@@ -42,5 +46,7 @@ __all__ = [
     "save_pickle",
     "load_pt",
     "save_pt",
+    "load_safetensors",
+    "save_safetensors",
     "create_parent_dirs",
 ]
