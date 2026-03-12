@@ -4,16 +4,25 @@ whywhytools is a lightweight Python package for reading and writing JSON, JSON L
 
 ## Installation
 
-You can install this package using pip:
+The package can be installed via pip:
 
 ```bash
 pip install whywhytools
 ```
 
-To use PyTorch functionalities, you will need to install it with the `torch` optional dependency:
+For extended functionalities, optional dependencies are available. 
+
+To install dependencies for specific features:
 
 ```bash
-pip install whywhytools[torch]
+pip install "whywhytools[torch]"
+pip install "whywhytools[safetensors]"
+```
+
+To install all optional dependencies simultaneously:
+
+```bash
+pip install "whywhytools[all]"
 ```
 
 ## Quickstart

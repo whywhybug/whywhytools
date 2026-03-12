@@ -15,6 +15,7 @@ dependencies = []
 [project.optional-dependencies]
 torch = ["torch>=2.0.0"]
 safetensors = ["safetensors"]
+all = ["torch>=2.0.0", "safetensors"]
 
 [tool.setuptools_scm]
 local_scheme = "no-local-version"
