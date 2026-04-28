@@ -7,6 +7,10 @@ on:
       - main
     tags:
       - "v*"
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   test:
     uses: ./.github/workflows/test.yaml
@@ -31,7 +35,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install uv and Set up Python
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v8
         with:
           enable-cache: true
           python-version: "3.10"
@@ -66,7 +70,7 @@ jobs:
           fetch-depth: 0
 
       - name: Install uv and Set up Python
-        uses: astral-sh/setup-uv@v5
+        uses: astral-sh/setup-uv@v8
         with:
           enable-cache: true
           python-version: "3.10"
