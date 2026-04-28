@@ -1,6 +1,6 @@
 import pytest
 from pathlib import Path
-from whywhytools.jsonl_manager import read_jsonl, write_jsonl, append_jsonl
+from whywhytools import append_jsonl, read_jsonl, write_jsonl
 
 
 def test_write_and_read_jsonl(tmp_path: Path):

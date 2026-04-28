@@ -3,7 +3,7 @@ import pytest
 torch = pytest.importorskip("torch")
 
 from pathlib import Path
-from whywhytools.torch_manager import load_pt, save_pt
+from whywhytools import load_pt, save_pt
 
 
 def test_save_and_load_pt(tmp_path: Path):

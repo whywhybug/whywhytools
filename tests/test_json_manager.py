@@ -1,7 +1,7 @@
 import pytest
 from pathlib import Path
 import json
-from whywhytools.json_manager import read_json, write_json
+from whywhytools import read_json, write_json
 
 
 def test_write_and_read_json(tmp_path: Path):

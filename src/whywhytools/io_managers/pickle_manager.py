@@ -1,13 +1,12 @@
 """This module provides utility functions for managing Pickle files."""
 
-import os
 import pickle
 import sys
 from pathlib import Path
 from typing import Any
 
-from .type_checker import check_type
-from .utils import create_parent_dirs
+from ..type_checker import check_type
+from ..utils import create_parent_dirs
 
 
 def load_pickle(file: str | Path) -> Any:
@@ -50,7 +49,7 @@ def save_pickle(
         FileExistsError: If the file exists, force is False, and raise_on_exists is True.
     """
     check_type(file, (str, Path))
-    if os.path.exists(file) and not force:
+    if Path(file).exists() and not force:
         msg = f"[ERROR] {file} already exists."
         if raise_on_exists:
             raise FileExistsError(msg)

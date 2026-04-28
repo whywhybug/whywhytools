@@ -1,6 +1,6 @@
 import pytest
 from pathlib import Path
-from whywhytools.pickle_manager import load_pickle, save_pickle
+from whywhytools import load_pickle, save_pickle
 
 
 def test_save_and_load_pickle(tmp_path: Path):

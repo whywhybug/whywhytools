@@ -6,7 +6,7 @@ safetensors = pytest.importorskip("safetensors")
 
 from pathlib import Path
 
-from whywhytools.safetensors_manager import load_safetensors, save_safetensors
+from whywhytools import load_safetensors, save_safetensors
 
 
 def test_save_and_load_safetensors(tmp_path: Path):
