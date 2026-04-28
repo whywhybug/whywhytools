@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from whywhytools.text_manager import append_file, read_file, write_file
+from whywhytools import append_file, read_file, write_file
 
 
 def test_write_and_read_file(tmp_path: Path):

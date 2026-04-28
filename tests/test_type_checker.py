@@ -1,5 +1,5 @@
 import pytest
-from whywhytools.type_checker import get_var_name, check_type, check_list_type
+from whywhytools.type_checker import check_list_type, check_type, get_var_name
 
 
 def test_get_var_name():

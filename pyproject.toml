@@ -23,6 +23,9 @@ local_scheme = "no-local-version"
 [project.urls]
 Homepage = "https://github.com/whywhybug/whywhytools"
 
+[project.scripts]
+wwt-reencode = "whywhytools.cli.reencode:main"
+
 [tool.setuptools]
 package-dir = { "" = "src" }
 
