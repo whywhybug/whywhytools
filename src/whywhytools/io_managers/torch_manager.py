@@ -1,11 +1,15 @@
 """This module provides utility functions for managing PyTorch files."""
 
+from __future__ import annotations
+
+import logging
 import sys
 from pathlib import Path
 from typing import Any
 
-from ..type_checker import check_type
-from ..utils import create_parent_dirs
+from ..utils import check_type, create_parent_dirs
+
+logger = logging.getLogger(__name__)
 
 
 def load_pt(file: str | Path, map_location: Any = None, weights_only: bool = False, **kwargs: Any) -> Any:
@@ -63,4 +67,4 @@ def save_pt(
     torch.save(obj, file, **kwargs)
 
     if not silent:
-        print(f"[INFO] save to {file}")
+        logger.info("save to %s", file)

@@ -1,11 +1,15 @@
 """This module provides utility functions for managing Safetensors files."""
 
+from __future__ import annotations
+
+import logging
 import sys
 from pathlib import Path
 from typing import Any
 
-from ..type_checker import check_type
-from ..utils import create_parent_dirs
+from ..utils import check_type, create_parent_dirs
+
+logger = logging.getLogger(__name__)
 
 
 def load_safetensors(file: str | Path, device: str | int = "cpu") -> Any:
@@ -65,4 +69,4 @@ def save_safetensors(
     save_file(obj, file, metadata=metadata)
 
     if not silent:
-        print(f"[INFO] save to {file}")
+        logger.info("save to %s", file)

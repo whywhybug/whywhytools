@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools", "wheel", "setuptools_scm"]
+requires = ["setuptools>=75", "setuptools_scm>=8"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -19,6 +19,7 @@ all = ["whywhytools[torch]", "whywhytools[safetensors]"]
 
 [tool.setuptools_scm]
 local_scheme = "no-local-version"
+fallback_version = "0.0.0.dev0"
 
 [project.urls]
 Homepage = "https://github.com/whywhybug/whywhytools"
@@ -33,11 +34,13 @@ package-dir = { "" = "src" }
 where = ["src"]
 
 [tool.pytest.ini_options]
+testpaths = ["tests"]
 pythonpath = ["src"]
+addopts = "-v --tb=short"
 
 [tool.ruff]
 line-length = 120
-target-version = "py310"
+target-version = "py312"
 src = ["src"]
 
 [tool.ruff.lint]
@@ -51,6 +54,7 @@ select = [
     "FURB", # refurb (best practices)
     "SIM",  # flake8-simplify (code simplification)
     "C4",   # flake8-comprehensions
+    "B",    # flake8-bugbear (common design flaws & bugs)
 ]
 ignore = [
     "E501",  # Ignore line length violations (already handled by line-length)
@@ -75,4 +79,5 @@ line-ending = "auto"
 [dependency-groups]
 dev = [
     "pytest>=9.0.2",
+    "ruff>=0.9.0",
 ]

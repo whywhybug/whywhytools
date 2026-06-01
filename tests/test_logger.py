@@ -1,11 +1,11 @@
-"""Tests for the setup_logger utility in logging_utils."""
+"""Tests for the setup_logger utility in utils.logger."""
 
 import logging
 import sys
 
 import pytest
 
-from whywhytools.logging_utils import setup_logger
+from whywhytools.utils import setup_logger
 
 
 @pytest.fixture(autouse=True)
