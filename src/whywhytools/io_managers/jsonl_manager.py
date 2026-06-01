@@ -1,11 +1,15 @@
 """This module provides utility functions for managing JSONL (JSON Lines) files."""
 
+from __future__ import annotations
+
 import json
+import logging
 import sys
 from pathlib import Path
 
-from ..type_checker import check_list_type, check_type
-from ..utils import create_parent_dirs
+from ..utils import check_list_type, check_type, create_parent_dirs
+
+logger = logging.getLogger(__name__)
 
 
 def read_jsonl(file: str | Path) -> list[dict]:
@@ -69,7 +73,7 @@ def write_jsonl(
             print(file=fp)
 
     if not silent:
-        print(f"[INFO] save to {file}")
+        logger.info("save to %s", file)
 
 
 def append_jsonl(obj_list: dict | list[dict], file: str | Path) -> None:

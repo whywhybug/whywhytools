@@ -1,12 +1,16 @@
 """This module provides utility functions for managing Pickle files."""
 
+from __future__ import annotations
+
+import logging
 import pickle
 import sys
 from pathlib import Path
 from typing import Any
 
-from ..type_checker import check_type
-from ..utils import create_parent_dirs
+from ..utils import check_type, create_parent_dirs
+
+logger = logging.getLogger(__name__)
 
 
 def load_pickle(file: str | Path) -> Any:
@@ -27,7 +31,7 @@ def load_pickle(file: str | Path) -> Any:
 
 
 def save_pickle(
-    obj,
+    obj: Any,
     file: str | Path,
     force: bool = False,
     silent: bool = False,
@@ -60,4 +64,4 @@ def save_pickle(
         pickle.dump(obj, f)
 
     if not silent:
-        print(f"[INFO] save to {file}")
+        logger.info("save to %s", file)

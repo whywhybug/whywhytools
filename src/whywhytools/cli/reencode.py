@@ -12,7 +12,7 @@ import logging
 import sys
 from pathlib import Path
 
-from ..logging_utils import setup_logger
+from ..utils import setup_logger
 
 logger = logging.getLogger(__name__)
 

@@ -1,10 +1,14 @@
 """This module provides utility functions for managing text files."""
 
+from __future__ import annotations
+
+import logging
 import sys
 from pathlib import Path
 
-from ..type_checker import check_list_type, check_type
-from ..utils import create_parent_dirs
+from ..utils import check_list_type, check_type, create_parent_dirs
+
+logger = logging.getLogger(__name__)
 
 
 def read_file(file: str | Path, lines: bool = False) -> str | list[str]:
@@ -67,7 +71,7 @@ def write_file(
             print(line, file=fp)
 
     if not silent:
-        print(f"[INFO] save to {file}")
+        logger.info("save to %s", file)
 
 
 def append_file(lines: str | list[str], file: str | Path) -> None:

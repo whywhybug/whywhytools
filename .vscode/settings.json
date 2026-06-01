@@ -1,0 +1,6 @@
+{
+    "search.exclude": {
+        "**/.venv/**/site-packages": false
+    },
+    "python.defaultInterpreterPath": "./.venv/Scripts/python"
+}
