@@ -14,7 +14,7 @@ dependencies = []
 
 [project.optional-dependencies]
 torch = ["torch>=2.0.0"]
-safetensors = ["safetensors[testingfree]"]
+safetensors = ["safetensors>=0.8.0", "numpy"]
 all = ["whywhytools[torch]", "whywhytools[safetensors]"]
 
 [tool.setuptools_scm]
